@@ -116,9 +116,14 @@ textarea {
     /*
     display: flex;
     gap: 0px;*/
-    display: grid;
-    grid-template-columns: 20% 55% 20%; /* siempre dos columnas */
-    gap: 10px;
+  /*  display: grid;
+    grid-template-columns: 20% 55% 20%; /* siempre dos columnas 
+    gap: 10px;*/
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px; /* separa de bordes */
 }
 
 .imagenes img {
@@ -425,6 +430,7 @@ legend{
     font-size: x-large;
     text-align: center;
 }
+
 
 
 
