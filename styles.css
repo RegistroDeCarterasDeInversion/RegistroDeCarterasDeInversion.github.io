@@ -113,8 +113,12 @@ textarea {
 
 /* IMÁGENES ENCABEZADO */
 .imagenes {
+    /*
     display: flex;
-    gap: 0px;
+    gap: 0px;*/
+    display: grid;
+    grid-template-columns: 20% 55% 20%; /* siempre dos columnas */
+    gap: 10px;
 }
 
 .imagenes img {
@@ -421,6 +425,7 @@ legend{
     font-size: x-large;
     text-align: center;
 }
+
 
 
 
