@@ -1,4 +1,4 @@
-* {
+k* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -119,13 +119,13 @@ textarea {
   /*  display: grid;
     grid-template-columns: 20% 55% 20%; /* siempre dos columnas 
     gap: 10px;*/
-
+width:100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px; /* separa de bordes */
     gap:20px;
-    background-color:#000;
+    background-color:#fff;
 }
 
 .imagenes img {
@@ -432,6 +432,7 @@ legend{
     font-size: x-large;
     text-align: center;
 }
+
 
 
 
