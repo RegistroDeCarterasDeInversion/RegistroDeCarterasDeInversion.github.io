@@ -1,4 +1,4 @@
-k* {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -432,6 +432,7 @@ legend{
     font-size: x-large;
     text-align: center;
 }
+
 
 
 
