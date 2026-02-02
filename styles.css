@@ -434,6 +434,25 @@ legend{
 }
 
 
+.tabla_style {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+.tabla_style td {
+    padding: 6px;
+    overflow: hidden;
+}
+
+.tabla_style input,
+.tabla_style textarea,
+.tabla_style select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
 
 
 
