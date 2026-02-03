@@ -454,6 +454,31 @@ legend{
     box-sizing: border-box;
 }
 
+.imagenes img {
+  height: 80px;        /* todas parejas */
+  width: auto;         /* NO se estiran */
+  flex-shrink: 0;      /* no se aplastan */
+}
+
+/* imagen central un poco más chica */
+.imagenes .centro {
+  height: 70px;        /* ajusta a gusto */
+}
+
+
+.imagenes > div {
+  max-width: 300px;   /* fuerza salto de línea */
+  text-align: center;
+  flex: 1;            /* ocupa solo el centro */
+}
+
+.imagenes h2 {
+  margin: 0;
+  line-height: 1.2;
+  font-size: 1.1rem;
+  white-space: normal;
+}
+
 
 
 
