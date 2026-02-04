@@ -462,7 +462,7 @@ legend{
 
 /* imagen central un poco más chica */
 .imagenes .centro {
-  height: 70px;        /* ajusta a gusto */
+  height: 90px;        /* ajusta a gusto */
 }
 
 
@@ -478,6 +478,7 @@ legend{
   font-size: 1.1rem;
   white-space: normal;
 }
+
 
 
 
