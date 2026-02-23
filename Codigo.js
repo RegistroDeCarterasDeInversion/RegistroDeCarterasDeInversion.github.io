@@ -942,7 +942,7 @@ setTimeout(() => {
                                  body: new FormData(this)
                 })*/
                 
-                 fetch("https://script.google.com/macros/s/AKfycbw0MESGpTtt-lCaAX4KbtNyQOw3VjzIvzv8bVwWpxDefNokuv-AB-OppZnkBOR0vwftHg/exec", {
+                 fetch("https://script.google.com/macros/s/AKfycbzxz08ox-WUn2YKXPyX0GqfEx2BIAJzB0ODKZSefiF4tTfE2wYhJg93WkZXsjja3I-40g/exec", {
                   method: "POST",
                   body: JSON.stringify(data)
   })
@@ -961,6 +961,7 @@ setTimeout(() => {
   })
   .catch(() => alert("Error al enviar"));
 });
+
 
 
 
