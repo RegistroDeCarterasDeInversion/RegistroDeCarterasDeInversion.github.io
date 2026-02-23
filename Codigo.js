@@ -1,5 +1,9 @@
 const tbody = document.getElementById("tablaBody");
 
+
+//------------------------------------Construccion de tabla--------------------------
+
+
 for (let i = 1; i <= 10; i++) {
   const tr = document.createElement("tr");
 
@@ -90,12 +94,14 @@ for (let i = 1; i <= 10; i++) {
 }
 
 
-// escritura automatica de celdas repetidas
+//---------------------------Definicion de variables para selects de D Generales-------------------------------
+
 const secretariaInput = document.getElementById("secretaria");
 const direccionInput = document.getElementById("direccion");
 const nivelInput = document.getElementById("nivel");
 const dependenciaInput = document.getElementById("dependencia");
 
+//-----------------------------------Agregar fila cuando se agrega un equipo---------------------------------------
 document.getElementById("tablaBody").addEventListener("change", e => {
   if (!e.target.name?.startsWith("nombredelEquipoR")) return;
 
@@ -106,7 +112,8 @@ document.getElementById("tablaBody").addEventListener("change", e => {
     agregarFila();
   }
 });
-// Escuchamos cambios en nombre o apellido
+
+//----------------------------------------rellenado automatico de Nivel y dependencia----------------------------------------------
 nivelInput.addEventListener("change", generarNivel);
 dependenciaInput.addEventListener("change", generarDependencia);
 
@@ -120,6 +127,8 @@ function generarNivel() {
     celda.textContent = texto;
   });
 }
+
+
 function generarDependencia() {
   const valor = dependenciaInput.value.trim();
   const celdasDep = document.querySelectorAll("[id^='dependenciaR']");
@@ -142,9 +151,9 @@ textareas.forEach(textarea => {
   autoResize(textarea);
 });
 
-//Listas desplegables que dependen de otros valores
+//------------------------------Listas desplegables que dependen de otros valores
 
-
+//--------------------------------1.-Secretarias-----------------------------------------------------------------
 const secretarias={
 
 SG:[{text:"Unidad Politécnica de gestión con perspectiva de género (UPGPG)",value:"UPGPG"},
@@ -217,12 +226,14 @@ SG:[{text:"Unidad Politécnica de gestión con perspectiva de género (UPGPG)",v
           {text:"Dirección de cómputo y comunicaciones", value:"DCC"}, 
           {text:"Dirección de sistemas informáticos", value:"DSI"}],  
    /*YA */   
-    ER:[{text:"Estación de Radiodifusión XHIPN-FM 95.7 MHz", value:"ER"}]    
+    ER:[{text:"Estación de Radiodifusión XHIPN-FM 95.7 MHz", value:"ER"}],    
+    POI:[{text:"Patronato de Obras e Instalaciones  (POI)", value:"POI"}],
+    COFAA:[{text:"Comisión de Operación y Fomento de Actividades Académicas (COFAA)", value:"COFAA"}],
 }
 
 
 
-
+//---------------------Definicion de opciones de selects con base a la eleccion en a secretaria------------------------------------------------
 
 secretariaInput.addEventListener("change", () => {
   const valor = secretariaInput.value;
@@ -243,6 +254,7 @@ secretariaInput.addEventListener("change", () => {
 
 
 
+//--------------------------------2.-Direcciones-----------------------------------------------------------------
 
 
 
@@ -369,7 +381,13 @@ const direcciones={
     
     //Estacion de Radio
     
-    ER:[{text:"Administrativo",value:"ADMIN_ER"}]
+    ER:[{text:"Administrativo",value:"ADMIN_ER"}],
+    // POI
+    POI:[{text:"Administrativo",value:"ADMIN_POI"}],
+
+    // 
+    COFAA:[{text:"Administrativo",value:"ADMIN_COFAA"}]
+
 }    
 
 direccionInput.addEventListener("change", () => {
@@ -391,7 +409,7 @@ direccionInput.addEventListener("change", () => {
 
 
 
-
+//------------------------Nivel-----------------------------------------------------------------------------------
 
 
 
@@ -609,8 +627,15 @@ ADMIN_DSI_CENAC:["Dirección de sistemas informáticos"],
   
 //Estacion de Radio
 
-ADMIN_ER:["Estación de Radiodifusión Radio IPN XHIPN-FM 95.7 MHZ."]
+ADMIN_ER:["Estación de Radiodifusión Radio IPN XHIPN-FM 95.7 MHZ."],
+
+ADMIN_POI:["Patronato de Obras e Instalaciones  (POI)"],
+ADMIN_COFAA:["Comisión de Operación y Fomento de Actividades Académicas (COFAA)"],  
 };
+
+
+//--------------------Actualizacion de la opciones de dependencia con base al valor elegido en el nivel
+
 
 nivelInput.addEventListener("change", () => {
   const valor = nivelInput.value;
@@ -645,6 +670,9 @@ function actualizarObligatoriedadFila(fila) {
 }
 
 
+//----------------Esta parte se encarga de detectar un cambio en las celdas de la tabla y cuando recibre un cambio que no es 
+//----------------en la clase obligatorio este no reacciona, en caso afirmativo cambio el estado de required
+
 
 document.getElementById("tablaBody").addEventListener("input", function (e) {
   if (!e.target.classList.contains("obligatorio")) return;
@@ -653,6 +681,7 @@ document.getElementById("tablaBody").addEventListener("input", function (e) {
   actualizarObligatoriedadFila(fila);
 });
 
+//----------------------Agregar fila
 
 function agregarFila(){
   const tbody = document.getElementById("tablaBody");
@@ -747,9 +776,12 @@ function agregarFila(){
   generarDependencia();
   activarAutoExpand(fila);
 }    
+
 function obtenerNumeroFila(){
   return document.querySelectorAll("#tablaBody tr").length + 1;
 }
+
+
 function formatearMiles(input) {
   // Quitar todo menos números y punto
   let valor = input.value.replace(/[^0-9.]/g, "");
@@ -769,6 +801,8 @@ function formatearMiles(input) {
     ? `${entero}.${decimal.slice(0,2)}`
     : entero;
 }
+
+
 function activarAutoExpand(fila){
   const textareas = fila.querySelectorAll(".auto-expand");
   textareas.forEach(textarea => {
@@ -786,10 +820,20 @@ document.getElementById("miFormulario").addEventListener("keydown", function (e)
   });
 
 
-/* REVISAR*/
 
 
-  document.getElementById("guardarBorrador").addEventListener("click", () => {
+//---------------------------Generar Folio
+function generarFolio() {
+  return Math.random().toString(36).substr(2, 8).toUpperCase();
+}
+
+
+
+
+//---------------------------GuardarBorrador--------------------------------------------------
+
+
+  document.getElementById("guardarBorrador").addEventListener("click", async () => {
   const form = document.getElementById("miFormulario");
   const formData = new FormData(form);
 
@@ -801,11 +845,40 @@ document.getElementById("miFormulario").addEventListener("keydown", function (e)
 
   // Guardamos también el número de filas actuales
   data.__filas = document.querySelectorAll("#tablaBody tr").length;
+ 
+  const folio = generarFolio();
+  data.__folio = folio;
 
-  localStorage.setItem("borradorFormulario", JSON.stringify(data));
 
-  alert("✅ Borrador guardado correctamente");
+try {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbzxz08ox-WUn2YKXPyX0GqfEx2BIAJzB0ODKZSefiF4tTfE2wYhJg93WkZXsjja3I-40g/exec", {
+      method: "POST",
+      body: JSON.stringify({action: "guardarBorrador", data})
+    });
+    
+  //              localStorage.setItem("borradorFormulario", JSON.stringify(data));
+
+//  alert("✅ Borrador guardado correctamente");
+
+  
+// ---------------Nuevo------------------------------------------- 
+
+  const json = await res.json();
+if (json.success) {
+      alert(`✅ Borrador guardado correctamente. Tu folio es: ${folio}`);
+    } else {
+      alert("⚠️ Error al guardar el borrador: " + json.message);
+    }
+  } catch (e) {
+    alert("⚠️ Error de conexión al guardar el borrador");
+  }
+
 });
+
+
+
+
+
 
 
 function setSelectValue(selectId, value) {
@@ -847,26 +920,56 @@ function restaurarTabla(data) {
 
 
 
-document.getElementById("cargarBorrador").addEventListener("click", () => {
+document.getElementById("cargarBorrador").addEventListener("click", async () => {
+//-------------------------- Borrador con  folio (Backend)   
+  
+  const folio = document.getElementById("folioInput").value.trim();
+  if (!folio) {
+    alert("⚠️ Ingresa un folio válido");
+    return;
+  }
+
+try {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbzxz08ox-WUn2YKXPyX0GqfEx2BIAJzB0ODKZSefiF4tTfE2wYhJg93WkZXsjja3I-40g/exec", {
+      method: "POST",
+      body: JSON.stringify({action: "cargarBorrador", folio})
+    });
+    const json = await res.json();
+
+    if (!json.success) {
+      alert("⚠️ " + json.message);
+      return;
+    }
+
+//----------------------------------------------------------------------------
+
+  
+/*-------------BORRADOR LOCAL--------------------------------------------------  
   const borrador = localStorage.getItem("borradorFormulario");
   if (!borrador) {
     alert("⚠️ No hay ningún borrador guardado");
     return;
   }
+*/
 
-  const data = JSON.parse(borrador);
+  
+  //  (Datos locales)  const data = JSON.parse(borrador);
+
+  const data =json.data;
+
+  
   const form = document.getElementById("miFormulario");
 
   // Limpiar tabla
   const tbody = document.getElementById("tablaBody");
   tbody.innerHTML = "";
 
-  // Reconstruir filas
+  /* Reconstruir filas
   const filas = data.__filas || 10;
   for (let i = 1; i <= filas; i++) {
     agregarFila();
   }
-
+*/
 
 
 // Restaurar selects encadenados
@@ -904,6 +1007,10 @@ setTimeout(() => {
   }, 0);
 }, 0);
   alert("📂 Borrador cargado correctamente");
+} catch (e) {
+    alert("⚠️ Error de conexión al cargar el borrador");
+}
+  
 });
 
 
@@ -921,6 +1028,12 @@ setTimeout(() => {
                 if (!this.checkValidity()) {
                     this.reportValidity(); // muestra mensajes
                     return;  
+                }
+                 const confirmar = confirm("¿Estás seguro de que deseas enviar el formulario?");
+
+                if (!confirmar) {
+                  // ❌ Usuario canceló
+                  return;
                 }
                 const formData = new FormData(this);
                 const selectsTexto = [
