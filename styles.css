@@ -359,6 +359,7 @@ p {
 
 .TablaFS{
     border:1px solid #DCDCDE;
+    padding:0;
 }
 
 legend{    
@@ -482,7 +483,7 @@ legend{
 
 .enlace{
     margin-left:900px;
-    margin-botom:40px;
+    margin-bottom:10px;
     width:350px;
     height:40px;
     background-color:#fff;
@@ -490,6 +491,7 @@ legend{
     text-align: center;
     border:solid #000;
 }
+
 
 
 
