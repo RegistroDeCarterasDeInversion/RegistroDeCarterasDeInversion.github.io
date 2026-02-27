@@ -482,14 +482,15 @@ legend{
 
 .enlace{
     margin-left:900px;
-    margin-botom:80px;
+    margin-botom:40px;
     width:350px;
     height:40px;
     background-color:#fff;
-    border-radius:10px;
+    border-radius:30px;
     text-align: center;
     border:solid #000;
 }
+
 
 
 
