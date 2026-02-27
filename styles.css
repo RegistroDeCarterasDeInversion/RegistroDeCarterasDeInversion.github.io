@@ -482,7 +482,7 @@ legend{
 
 .enlace{
     margin-left:900px;
-    margin-botom:10px;
+    margin-botom:80px;
     width:350px;
     height:40px;
     background-color:#fff;
@@ -490,6 +490,7 @@ legend{
     text-align: center;
     border:solid #000;
 }
+
 
 
 
