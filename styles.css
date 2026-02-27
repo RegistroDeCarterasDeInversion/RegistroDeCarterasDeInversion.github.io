@@ -481,9 +481,12 @@ legend{
 }
 
 .enlace{
-    margin:100px;
-    background-color:#000;
+    margin-left:900px;
+    width:350px;
+    height:40px;
+    background-color:#fff;
     border-radius:10px;
+    text-align: center;
 }
 
 
